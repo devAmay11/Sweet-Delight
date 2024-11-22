@@ -1,0 +1,92 @@
+1. what is RabbitMQ ?
+   -
+ 	Producer: Application or service that generates messages.
+	Exchange: Routes messages to queues based on bindings and routing keys.
+	Queue: Stores messages until they are consumed.
+	Consumer: Application or service that processes messages from the queue.
+	Broker: RabbitMQ server that coordinates these components.
+
+   	[Producer] --> [Exchange] --> [Queue] --> [Consumer]
+                      	   ↑
+                       [Binding]
+
+	When to Use RabbitMQ
+		When asynchronous communication and message durability are needed.
+	Examples:
+		Queuing tasks for background processing (e.g., sending emails).
+		Routing messages between microservices.
+		Event-driven architectures for IoT or analytics.
+
+
+2.What is WebSocket ?
+	- Best for real-time communication where a direct connection between client and server is needed (e.g., live chat, notifications, or games).
+
+	When to Use WebSocket
+  	When real-time, low-latency communication is needed.
+  	Examples:
+   		Live chat applications.
+   		Real-time stock price updates.
+   		Multiplayer games.
+   		Collaborative tools like document editing
+
+3. what is RDS ?
+
+	In AWS (Amazon Web Services), RDBMS is offered as part of the Amazon RDS (Relational Database Service). Amazon RDS is a fully managed service that simplifies the setup, operation, 	and scaling of relational databases in the cloud.
+
+4. What is Redis?
+
+	Redis is an open-source, fast, and flexible system used to store and manage data in memory. It helps you store data temporarily (or for longer periods if needed) so that it can be 	accessed quickly, especially when it’s frequently used.
+
+  Why Use Redis:
+	Super Fast: It works from memory, so it’s much faster than traditional databases.
+	Flexible Data Types: It can store many types of data, not just simple key-value pairs.
+	Easy to Scale: Redis can be scaled to handle more data and traffic by adding more servers.
+	Simple Setup: It’s easy to install and use, with many libraries for different programming languages.
+
+
+5. what is CI/CD pipeline?
+	CI/CD stands for Continuous Integration and Continuous Delivery/Continuous Deployment. It's a set of practices used in software development to automate the process of building, 	testing, and deploying code.
+
+6. What is Docker ? 
+	In simple words, Docker is a tool that helps developers package their applications and all the things they need to run (like libraries and settings) into a small, portable box 	called a container. This container can run anywhere—on a laptop, server, or cloud—without worrying about differences in the environment. It ensures that the application works the 	same way no matter where it's run. Docker makes it easier to develop, test, and deploy software quickly and reliably.
+
+6. what is elastic search ?
+
+	Elasticsearch is a powerful search and analytics engine that is used to quickly search, store, and analyze large volumes of data. It is based on the open-source Lucene library and 	allows for fast and scalable searches.
+
+	Simple Explanation:
+
+	Imagine you have a huge library of books, and you want to quickly find the ones that contain specific words or phrases. Elasticsearch acts like a super-efficient librarian that can 	quickly scan through all the books and find the relevant ones, even if the library is massive.
+
+	Key Features:
+		Full-text Search: It can search text-based data and return results in milliseconds.
+		Scalable: It can handle huge amounts of data and still perform quickly.
+		Real-time Search: It provides fast results as data is being indexed.
+	Use Cases:
+		Website Search: For searching content, products, or articles on websites (e.g., Google search).
+		Log and Event Data Analysis: Often used for monitoring and analyzing logs from servers or applications (e.g., in DevOps, with tools like ELK Stack: Elasticsearch, Logstash, 		and Kibana).
+		E-commerce: For searching products by name, category, or description, offering suggestions and filters.
+		Business Intelligence: Analyzing big datasets, helping businesses find trends or insights.
+		Social Media Analytics: Analyzing and filtering large amounts of social media data to track mentions, sentiments, or trends.
+
+7. what is Kafka?
+	Imagine a conveyor belt that moves boxes (data) from one place to another, and different machines (applications) can pick up and process those boxes as they pass by. Kafka is like 	that conveyor belt: it moves messages (data) from one place to another, allowing different systems to send and receive messages in real-time.
+
+	Key Concepts:
+		Producer: An application that sends data (messages) to Kafka.
+		Consumer: An application that receives data (messages) from Kafka.
+		Broker: A Kafka server that stores the messages and serves them to consumers.
+		Topic: A category or feed name to which messages are published. Producers send messages to topics, and consumers subscribe to topics to read messages.
+		Partition: Topics are split into partitions to allow for parallel processing and scalability.
+		Zookeeper: An external service that Kafka uses for managing and coordinating distributed brokers.
+	Use Cases:
+		Real-time Data Streaming: For processing and analyzing real-time data from various sources like sensors, logs, or financial transactions.
+		Messaging: Kafka is often used as a message queue to pass information between different systems in a decoupled manner.
+		Log Aggregation: Collecting logs from various services or servers and streaming them for processing or storage.
+		Event Sourcing: In microservices architectures, Kafka can act as an event store to track and process events in the system.
+		Data Pipelines: Kafka is used to build data pipelines where data is collected, processed, and moved between systems (e.g., from databases to analytics platforms).
+
+
+8. what is microservices ?
+
+	Imagine a large factory where instead of one massive assembly line for making products, there are many small, specialized assembly lines. Each line is responsible for one specific 	task, and they all work together to create the final product. In the same way, a microservices-based application breaks down a complex system into smaller, independent services 	that can evolve, scale, and work on their own, yet still contribute to the overall application.
