@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -84,16 +86,16 @@ WSGI_APPLICATION = 'sweet_delight.wsgi.application'
 # }
 
 # Database configuration
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Or other engine
-        'NAME': config('DATABASE_NAME', default='db_name'),
-        'USER': config('DATABASE_USER', default='user'),
-        'PASSWORD': config('DATABASE_PASSWORD', default='password'),
-        'HOST': config('DATABASE_HOST', default='127.0.0.1'),
-        'PORT': config('DATABASE_PORT', default='5432'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',  # Or other engine
+#         'NAME': config('DATABASE_NAME', default='db_name'),
+#         'USER': config('DATABASE_USER', default='user'),
+#         'PASSWORD': config('DATABASE_PASSWORD', default='password'),
+#         'HOST': config('DATABASE_HOST', default='127.0.0.1'),
+#         'PORT': config('DATABASE_PORT', default='5432'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -140,3 +142,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirect after login
+LOGIN_REDIRECT_URL = '/'  # You can change this to your home page URL
+
+# Redirect after logout
+LOGOUT_REDIRECT_URL = '/'  # You can change this to your home page or login page
