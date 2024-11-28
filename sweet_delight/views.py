@@ -1,13 +1,15 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from .mongo_client import get_mongodb
-mongodbConn = get_mongodb()
+from sweet_delight import get_mongo_db
 
-def home(request):    
-    countData = list(mongodbConn.Countries.aggregate([
-        {"$match": {"id": 2}},
-        {"$project": {"_id": 0}}
-    ]))
 
-    print("-------countData",countData)
-    return render(request, "index/index.html",{})
+def home(request):
+    try:
+        db = get_mongo_db()
+        user_db = db['sample_airbnb']
+        listingsAndReviews_collection = user_db['listingsAndReviews']
+        data = listingsAndReviews_collection.find_one({'_id': '10006546'})
+        print(data)
+
+        return HttpResponse({'Message': 'Successfully Pinged'})
+    except Exception as e:
+        print(e)
