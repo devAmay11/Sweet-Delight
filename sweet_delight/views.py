@@ -8,6 +8,4 @@ def home(request):
         {"$match": {"id": 2}},
         {"$project": {"_id": 0}}
     ]))
-
-    print("-------countData",countData)
     return render(request, "index/index.html",{})

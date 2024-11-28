@@ -1,3 +1,4 @@
+{% load static %}
 <!--PreLoader-->
 <div class="loader">
     <div class="loader-inner">
@@ -15,7 +16,8 @@
                     <!-- logo -->
                     <div class="site-logo">
                         <a href="index.html">
-                            <img src="assets/img/logo.png" alt="">
+                            
+                            <img src="{% static '/img/logo.png' %}" alt="">
                         </a>
                     </div>
                     <!-- logo -->
@@ -56,6 +58,8 @@
                                     <li><a href="cart.html">Cart</a></li>
                                 </ul>
                             </li>
+                            <li><a href="#" id="loginModalPage" onclick="showModal(this)" >Log in</a></li>
+                            <li><a href="about.html">Sign up</a></li>
                             <li>
                                 <div class="header-icons">
                                     <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
