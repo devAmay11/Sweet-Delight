@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 <!-- home page slider -->
 <div class="homepage-slider">
@@ -61,139 +61,99 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+<div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="width: 90%;" id="loginModalContent">
             <div class="modal-header" id="loginModalHead">
-                <h3 class="modal-title" id="exampleModalLongTitle" style="margin-left: 15px;">Login</h3>
+                <h3 class="modal-title" id="authModalLabel" style="margin-left: 15px;">Login</h3>
                 <h3 type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </h3>
             </div>
             <div class="modal-body" style="margin: 12px;">
-                <div class="input-group input-group-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-							<span class="flag-icon flag-icon-in" style="margin-right: 8px;"></span> +91
-						</span>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Large" placeholder="Phone number" aria-describedby="inputGroup-sizing-sm">
-                </div>
-                <div class="mb-4"></div>
-                <div class="input-group input-group-lg">
-                    <button class="btn btn-dark btn-lg w-100 mb-4">Send OTP</button>
-                </div>
-                <p class="text-center mb-4">or</p>
-                <div class="input-group input-group-lg">
-                    <button class="btn btn-outline-dark btn-lg w-100 mb-4" id="loginEmailPage" onclick="showEamilModal()">
-                        <i class="fas fa-envelope"></i>
-                        Continue with Email
-                    </button>
-                </div>
-                <div class="input-group input-group-lg">
-                    <button class="btn btn-outline-dark btn-lg w-100 mb-4">
-                        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" style="width: 20px; height: 20px;" /> Sign in with Google
-                    </button>
-                </div>
+				<form id="loginForm" method="POST">
+					{% csrf_token %}
+					<div class="input-group input-group-lg">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<span class="flag-icon flag-icon-in" style="margin-right: 8px;"></span> +91
+							</span>
+						</div>
+						<input type="text" class="form-control" aria-label="Large" placeholder="Phone number" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<div class="mb-4"></div>
+					<div class="input-group input-group-lg">
+						<button class="btn btn-dark btn-lg w-100 mb-4">Send OTP</button>
+					</div>
+					<p class="text-center mb-4">or</p>
+					<div class="input-group input-group-lg">
+						<button type="button" class="btn btn-outline-dark btn-lg w-100 mb-4" onclick="toggleForms('emailForm')">
+							<i class="fas fa-envelope"></i>
+							Continue with Email
+						</button>
+					</div>
+					<div class="input-group input-group-lg">
+						<button class="btn btn-outline-dark btn-lg w-100 mb-4">
+							<img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" style="width: 20px; height: 20px;" /> Sign in with Google
+						</button>
+					</div>
+				</form>
+				<form id="EmailForm" style="display: none;" method="POST">
+					{% csrf_token %}
+					<div class="input-group input-group-lg">
+						<input type="text" class="form-control" aria-label="Large" placeholder="Email" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<div class="mb-4"></div>
+					<div class="input-group input-group-lg">
+						<input type="text" class="form-control" aria-label="Large" placeholder="Password" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<div class="mb-4"></div>
+					<div class="input-group input-group-lg">
+						<button class="btn btn-dark btn-lg w-100 mb-4">login to your account</button>
+					</div>
+				</form>
+				<form id="signUpForm" style="display: none;" method="POST">
+					{% csrf_token %}
+					<div class="input-group input-group-lg">
+						<input type="text" class="form-control" id="fullName" name="fullName" aria-label="Large" placeholder="Full Name" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<div class="mb-4"></div>
+					<div class="input-group input-group-lg">
+						<input type="email" class="form-control" id="email" name="email" aria-label="Large" placeholder="Email" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<p id="emailError" class="text-danger" style="display: none;">Invalid email address</p>
+					<div class="mb-4"></div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="agreeTerms" name="agreeTerms">
+						<label class="form-check-label" for="agreeTerms">
+							I agree to Zomato's <a href="#" target="_blank">Terms of Service</a>, <a href="#" target="_blank">Privacy Policy</a>, and <a href="#" target="_blank">Content Policies</a>.
+						</label>
+					</div>
+					<div class="mb-4"></div>
+					<div class="input-group input-group-lg">
+						<button id="createAccountButton" type="button" class="btn btn-dark btn-lg w-100 mb-4" disabled onclick="createUser()">Create account</button>
+					</div>
+					<p class="text-center mb-4">or</p>
+					<div class="input-group input-group-lg">
+						<button class="btn btn-outline-dark btn-lg w-100 mb-4">
+							<img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" style="width: 20px; height: 20px;" /> Sign in with Google
+						</button>
+					</div>
+				</form>
             </div>
             <div class="modal-footer">
-                <p class="text-left fs-6 w-100" style="margin-left: 15px;">
+                <p class="text-left fs-6 w-100" style="margin-left: 15px;" id="toggleLink">
                     New to <strong>Sweet Delight</strong>? 
-                    <a href="#" class="text-primary text-decoration-none">Create account</a>
+                    <a href="#" class="text-primary text-decoration-none" onclick="toggleForms('signUpForm')">Create account</a>
                 </p>
             </div>
         </div>
     </div>
 </div>
-
-			<div id="emailModalDiv" style="display: none;">	
-				<div class="modal-content" style="width: 90%;">
-					<div class="modal-header">
-						<h3 class="modal-title" id="exampleModalLongTitle" style="margin-left: 15px;">Login</h3>
-						<h3 type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</h3>
-					</div>
-					<div class="modal-body" style="margin: 12px;">
-						<div class="input-group input-group-lg">
-							<input type="text" class="form-control" aria-label="Large" placeholder="Email" aria-describedby="inputGroup-sizing-sm">
-						</div>
-						<div class="mb-4"></div>
-						<div class="input-group input-group-lg">
-							<button class="btn btn-dark btn-lg w-100 mb-4">Send OTP</button>
-						</div>
-						
-					</div>
-					<div class="modal-footer">
-						<p class="text-left fs-6 w-100" style="margin-left: 15px;">
-							Already have an account? 
-							<a href="#" class="text-primary text-decoration-none" id="loginPage" onclick="showModal(this)">Login</a>
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div id="loginModalDiv" style="display: none;">
-				<div class="modal-content" style="width: 90%;">
-					<div class="modal-header" id="loginModalHead">
-						<h3 class="modal-title" id="exampleModalLongTitle" style="margin-left: 15px;">Login</h3>
-						<h3 type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</h3>
-					</div>
-					<div class="modal-body" style="margin: 12px;">
-						<div class="input-group input-group-lg">
-							<div class="input-group-prepend">
-								<span class="input-group-text">
-									<span class="flag-icon flag-icon-in" style="margin-right: 8px;"></span> +91
-								</span>
-							</div>
-							<input type="text" class="form-control" aria-label="Large" placeholder="Phone number" aria-describedby="inputGroup-sizing-sm">
-						</div>
-						<div class="mb-4"></div>
-						<div class="input-group input-group-lg">
-							<button class="btn btn-dark btn-lg w-100 mb-4">Send OTP</button>
-						</div>
-						<p class="text-center mb-4">or</p>
-						<div class="input-group input-group-lg">
-							<button class="btn btn-outline-dark btn-lg w-100 mb-4" id="loginEmailPage" onclick="showEamilModal()">
-								<i class="fas fa-envelope"></i>
-								Continue with Email
-							</button>
-						</div>
-						<div class="input-group input-group-lg">
-							<button class="btn btn-outline-dark btn-lg w-100 mb-4">
-								<img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" style="width: 20px; height: 20px;" /> Sign in with Google
-							</button>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<p class="text-left fs-6 w-100" style="margin-left: 15px;">
-							New to <strong>Sweet Delight</strong>? 
-							<a href="#" class="text-primary text-decoration-none">Create account</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			
-			<input id="outsideDiv1" style="margin-top: 200px;">
-<script>
-    function showModal(element) {
-		// Trigger the modal
-		$('#loginModal').modal('show');
-		// Ensure the overflow property is set to auto so the body can scroll
-		$('body').css('overflow', 'auto');
-		$('body').css('padding-right', '');
-		
-	}
-
-	function showEamilModal(element) {
-		// Trigger the modal
-		var htmlContent = $('#emailModalDiv').html();
-    	console.log("HTML Content:", htmlContent);
-		$('#loginModalContent').replaceWith(htmlContent);
-		
-	}
 	
+<script src="{% static 'js/dashboard/dashboard.js' %}"></script>
+<script>
+    var createUserUrl = "{% url 'create_user' %}";
 </script>
+<script src="{% static 'js/login/login.js' %}"></script>
 {% endblock  %}
