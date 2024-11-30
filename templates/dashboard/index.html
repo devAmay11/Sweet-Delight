@@ -101,41 +101,52 @@
 				<form id="EmailForm" style="display: none;" method="POST">
 					{% csrf_token %}
 					<div class="input-group input-group-lg">
-						<input type="text" class="form-control" aria-label="Large" placeholder="Email" aria-describedby="inputGroup-sizing-sm">
+						<input type="text" class="form-control" aria-label="Large" placeholder="Email"  id="lgemail" name="lgemail" aria-describedby="inputGroup-sizing-sm">
 					</div>
 					<div class="mb-4"></div>
 					<div class="input-group input-group-lg">
-						<input type="text" class="form-control" aria-label="Large" placeholder="Password" aria-describedby="inputGroup-sizing-sm">
+						<input type="text" class="form-control" aria-label="Large" id="lgpassword" name="lgpassword" placeholder="Password" aria-describedby="inputGroup-sizing-sm">
 					</div>
 					<div class="mb-4"></div>
 					<div class="input-group input-group-lg">
-						<button class="btn btn-dark btn-lg w-100 mb-4">login to your account</button>
+						<button class="btn btn-dark btn-lg w-100 mb-4" onclick="userLogin()">login to your account</button>
 					</div>
 				</form>
 				<form id="signUpForm" style="display: none;" method="POST">
 					{% csrf_token %}
-					<div class="input-group input-group-lg">
+					<div class="input-group input-group-lg mb-4">
 						<input type="text" class="form-control" id="fullName" name="fullName" aria-label="Large" placeholder="Full Name" aria-describedby="inputGroup-sizing-sm">
 					</div>
-					<div class="mb-4"></div>
-					<div class="input-group input-group-lg">
+					<div class="input-group input-group-lg mb-4">
 						<input type="email" class="form-control" id="email" name="email" aria-label="Large" placeholder="Email" aria-describedby="inputGroup-sizing-sm">
 					</div>
 					<p id="emailError" class="text-danger" style="display: none;">Invalid email address</p>
-					<div class="mb-4"></div>
-					<div class="form-check">
+					<!-- Mobile Number Field -->
+					<div class="input-group input-group-lg mb-4">
+						<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number">
+					</div>
+					<p id="mobileError" class="text-danger" style="display: none;"></p>
+					<!-- Password Field -->
+					<div class="input-group input-group-lg mb-4">
+						<input type="password" class="form-control" id="password" name="password" aria-label="Large" placeholder="Password" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<!-- Confirm Password Field -->
+					<div class="input-group input-group-lg mb-4">
+						<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" aria-label="Large" placeholder="Confirm Password" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<p id="passwordError" class="text-danger" style="display: none;"></p>
+					<div class="form-check mb-4">
 						<input type="checkbox" class="form-check-input" id="agreeTerms" name="agreeTerms">
 						<label class="form-check-label" for="agreeTerms">
 							I agree to Zomato's <a href="#" target="_blank">Terms of Service</a>, <a href="#" target="_blank">Privacy Policy</a>, and <a href="#" target="_blank">Content Policies</a>.
 						</label>
 					</div>
-					<div class="mb-4"></div>
-					<div class="input-group input-group-lg">
-						<button id="createAccountButton" type="button" class="btn btn-dark btn-lg w-100 mb-4" disabled onclick="createUser()">Create account</button>
+					<div class="input-group input-group-lg mb-4">
+						<button id="createAccountButton" type="button" class="btn btn-dark btn-lg w-100" disabled onclick="createUser()">Create account</button>
 					</div>
 					<p class="text-center mb-4">or</p>
-					<div class="input-group input-group-lg">
-						<button class="btn btn-outline-dark btn-lg w-100 mb-4">
+					<div class="input-group input-group-lg mb-4">
+						<button class="btn btn-outline-dark btn-lg w-100">
 							<img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" style="width: 20px; height: 20px;" /> Sign in with Google
 						</button>
 					</div>
@@ -154,6 +165,9 @@
 <script src="{% static 'js/dashboard/dashboard.js' %}"></script>
 <script>
     var createUserUrl = "{% url 'create_user' %}";
+    var loginUserUrl = "{% url 'login_user' %}";
 </script>
+
 <script src="{% static 'js/login/login.js' %}"></script>
+<script src="{% static 'js/signup/signup.js' %}"></script>
 {% endblock  %}

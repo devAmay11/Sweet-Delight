@@ -16,7 +16,6 @@ function toggleForms(formName){
     const signUpForm = document.getElementById('signUpForm');
     const modalTitle = document.getElementById('authModalLabel');
     const toggleLink = document.getElementById('toggleLink');
-    console.log(`Selected Form: ${selectedForm}`);
     if (selectedForm == "emailForm"){
         loginForm.style.display = 'none';
         EmailForm.style.display = 'block';
@@ -44,42 +43,3 @@ function toggleForms(formName){
     }
     
 }
-
-// Select elements
-const fullNameInput = document.getElementById('fullName');
-const emailInput = document.getElementById('email');
-const agreeTermsCheckbox = document.getElementById('agreeTerms');
-const createAccountButton = document.getElementById('createAccountButton');
-const emailError = document.getElementById('emailError');
-
-// Function to validate email
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// Function to check form validity
-function checkFormValidity() {
-    const isFullNameValid = fullNameInput.value.trim() !== '';
-    const isEmailValid = isValidEmail(emailInput.value.trim());
-    const isTermsChecked = agreeTermsCheckbox.checked;
-
-    // Show or hide email error
-    if (!isEmailValid && emailInput.value.trim() !== '') {
-        emailError.style.display = 'block';
-    } else {
-        emailError.style.display = 'none';
-    }
-
-    // Enable or disable the button
-    if (isFullNameValid && isEmailValid && isTermsChecked) {
-        createAccountButton.disabled = false;
-    } else {
-        createAccountButton.disabled = true;
-    }
-}
-
-// Add event listeners for inputs and checkbox
-fullNameInput.addEventListener('input', checkFormValidity);
-emailInput.addEventListener('input', checkFormValidity);
-agreeTermsCheckbox.addEventListener('change', checkFormValidity);

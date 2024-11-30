@@ -74,6 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sweet_delight.wsgi.application'
 
+AUTH_USER_MODEL = 'login_app.CustomUser'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

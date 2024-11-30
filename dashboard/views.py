@@ -9,5 +9,6 @@ def dashboard(request):
     user_db = db['sample_airbnb']
     listingsAndReviews_collection = user_db['listingsAndReviews']
     data = listingsAndReviews_collection.find_one({'_id': '10006546'})
-    # print(data)
+    print("!!!!!!!sdsasdasdddddd   login succesfully !!!!!!!!")
     return render(request, "dashboard/index.html",{})
+
