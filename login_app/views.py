@@ -39,15 +39,11 @@ def login_user(request):
     if request.method == "POST":
         username = request.POST['lgemail']
         password = request.POST['lgpassword']
-        print("----fififi--username----",username)
-        print("----fififi--password----",password)
         user = authenticate(request, username=username,password=password)
         if user is not None:
-            print("----fififi------")
             login(request,user)
             return JsonResponse({'success': True})
         else:
-            print("----eslelse------")
             return JsonResponse({'success': False, 'errors': 'Please enter valid crendentials.'})
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request method'})
