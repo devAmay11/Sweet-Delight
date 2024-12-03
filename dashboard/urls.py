@@ -1,11 +1,10 @@
-from django.urls import path
-from django.views.generic import TemplateView
-from .views import login_view, signup_view
-
-
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from .import views
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='dashboard/index.html'), name='dashboard_home'),
-    path('login/', login_view, name='login'),  # Login page
-    path('signup/', signup_view, name='signup'),  # Signup page
-]
+    
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'dashboard',
+    'login_app'
 ]
 
 MIDDLEWARE = [
@@ -74,6 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sweet_delight.wsgi.application'
 
+AUTH_USER_MODEL = 'login_app.CustomUser'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -86,16 +88,16 @@ WSGI_APPLICATION = 'sweet_delight.wsgi.application'
 # }
 
 # Database configuration
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',  # Or other engine
-#         'NAME': config('DATABASE_NAME', default='db_name'),
-#         'USER': config('DATABASE_USER', default='user'),
-#         'PASSWORD': config('DATABASE_PASSWORD', default='password'),
-#         'HOST': config('DATABASE_HOST', default='127.0.0.1'),
-#         'PORT': config('DATABASE_PORT', default='5432'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # Or other engine
+        'NAME': config('DATABASE_NAME', default='db_name'),
+        'USER': config('DATABASE_USER', default='user'),
+        'PASSWORD': config('DATABASE_PASSWORD', default='password'),
+        'HOST': config('DATABASE_HOST', default='127.0.0.1'),
+        'PORT': config('DATABASE_PORT', default='5432'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

@@ -34,6 +34,9 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
+	
+
+
 </head>
 
 <body>
@@ -63,6 +66,18 @@
 	<script src="{% static 'js/sticker.js' %}"></script>
 	<!-- main js -->
 	<script src="{% static 'js/main.js' %}"></script>
+
+	<!-- Include jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- Include Bootstrap JS -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+	<script>
+		$('#authModal').on('hidden.bs.modal', function () {
+			console.log('Modal has been hidden');
+			// Perform any additional actions here, like resetting fields or other UI updates
+		});
+	</script>
 
 </body>
 </html>

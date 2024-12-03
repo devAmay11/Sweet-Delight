@@ -1,5 +1,6 @@
+{% load static %}
 <!--PreLoader-->
-<div class="loader">
+<div class="loader" id="loader">
     <div class="loader-inner">
         <div class="circle"></div>
     </div>
@@ -15,7 +16,8 @@
                     <!-- logo -->
                     <div class="site-logo">
                         <a href="index.html">
-                            <img src="assets/img/logo.png" alt="">
+                            
+                            <img src="{% static '/img/logo.png' %}" alt="">
                         </a>
                     </div>
                     <!-- logo -->
@@ -56,16 +58,40 @@
                                     <li><a href="cart.html">Cart</a></li>
                                 </ul>
                             </li>
-                             <li><a href="{% url 'login' %}">Log In</a></li>
-                             <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                            <li>
-                                <div class="header-icons">
-                                    <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-                                    <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                                </div>
-                            </li>
+                    
+                            {% if user.is_authenticated %}
+                                <!-- Profile Dropdown with Icon -->
+                                <li>
+                                    <div class="header-icons">
+                                        <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                        <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                        <a href="#">
+                                            <i class="fas fa-user-circle" style="font-size: 1.2em; color: #007bff; margin-right: 5px;"></i>
+                                            {{ user.full_name|default:user.username }}
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li><a href="/profile/">View Profile</a></li>
+                                            <li><a href="{% url 'logout_user' %}">Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            {% else %}
+                                <!-- Log In and Sign Up Links -->
+                                <li><a href="#" onclick="showModal('loginForm')">Log in</a></li>
+                                <li><a href="#" onclick="showModal('signUpForm')">Sign up</a></li>
+                                <li>
+                                    <div class="header-icons">
+                                        <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                        <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                    </div>
+                                </li>
+                            {% endif %}
+                    
+                           
                         </ul>
                     </nav>
+                    
+                    
                     <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                     <div class="mobile-menu"></div>
                     <!-- menu end -->
