@@ -100,18 +100,24 @@
 				</form>
 				<form id="EmailForm" style="display: none;" method="POST">
 					{% csrf_token %}
+					<div class="alert alert-danger" role="alert" id="authError" style="display: none;">
+						
+					  </div>
 					<div class="input-group input-group-lg">
-						<input type="text" class="form-control" aria-label="Large" placeholder="Email"  id="lgemail" name="lgemail" aria-describedby="inputGroup-sizing-sm">
+						<input type="text" class="form-control" aria-label="Large" placeholder="Email" id="lgemail" name="lgemail" aria-describedby="inputGroup-sizing-sm">
 					</div>
+					<p id="lgemailError" class="text-danger" style="display: none;">Invalid email address</p>
 					<div class="mb-4"></div>
 					<div class="input-group input-group-lg">
 						<input type="text" class="form-control" aria-label="Large" id="lgpassword" name="lgpassword" placeholder="Password" aria-describedby="inputGroup-sizing-sm">
 					</div>
+					<p id="lgpasswordError" class="text-danger" style="display: none;">Password cannot be blank</p>
 					<div class="mb-4"></div>
 					<div class="input-group input-group-lg">
-						<button class="btn btn-dark btn-lg w-100 mb-4" onclick="userLogin()">login to your account</button>
+						<button class="btn btn-dark btn-lg w-100 mb-4" type="button" onclick="userLogin()">Login to your account</button>
 					</div>
 				</form>
+				
 				<form id="signUpForm" style="display: none;" method="POST">
 					{% csrf_token %}
 					<div class="input-group input-group-lg mb-4">
