@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from .models import CustomUser
 
+# Function to create a user
 def create_user(request):
     if request.method == "POST":
         # Get the form data
@@ -26,7 +27,7 @@ def create_user(request):
             password=password,  # Django automatically hashes the password
         )
         user.save()
-        user = authenticate(request, username=user.username, password=password)
+        user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)  # Log the user in         
             return JsonResponse({'success': True})
@@ -35,20 +36,28 @@ def create_user(request):
         
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
+# Function to log in a user
 def login_user(request):
+    # Check if the request method is POST
     if request.method == "POST":
-        username = request.POST['lgemail']
+        # Retrieve username and password from the request's POST data
+        email = request.POST['lgemail']
         password = request.POST['lgpassword']
-        user = authenticate(request, username=username,password=password)
-        if user is not None:
-            login(request,user)
-            return JsonResponse({'success': True})
+        
+        # Authenticate the user with the provided credentials
+        user = authenticate(request, email=email, password=password)
+        
+        if user is not None:  # If the user is authenticated successfully
+            login(request, user)  # Log the user in
+            return JsonResponse({'success': True})  # Return a success response as JSON
         else:
-            return JsonResponse({'success': False, 'errors': 'Please enter valid crendentials.'})
+            # Return an error response if authentication fails
+            return JsonResponse({'success': False, 'errors': 'Please enter valid credentials.'})
     else:
+        # Return an error response for non-POST requests
         return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
+# Function to log out a user
 def logout_user(request):
-    logout(request)
-    messages.success(request, ("you have been logged out"))
-    return redirect('dashboard')
+    logout(request)  # Log out the current user
+    return redirect('index')

@@ -40,6 +40,7 @@ function arePasswordsValid() {
     const confirmPassword = confirmPasswordInput.value.trim();
 
     if (password === '' || confirmPassword === '') {
+        passwordError.style.display = 'none';
         return false;
     }
     else if (password !== confirmPassword) {
@@ -99,7 +100,7 @@ function createUser() {
         success: function(response) {
             if (response.success) {
                 console.log('Account created successfully!');
-                window.location.href = "/";
+                window.location.href = "/dashboard/dashboard";
                 
             } else {
                 $('#loader').hide();

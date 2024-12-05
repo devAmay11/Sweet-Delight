@@ -48,7 +48,7 @@ function userLogin() {
         success: function(response) {
             if (response.success) {
                 console.log('Login successfully!');
-                window.location.href = "/";
+                window.location.href = "/dashboard/dashboard";
             } else {
                 $('#loader').hide();
                 const alertDiv = $('#authError');
