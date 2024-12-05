@@ -61,6 +61,49 @@
 		</div>
 	</div>
 </div>
+
+<!-- features list section -->
+<div class="list-section pt-80 pb-80">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+				<div class="list-box d-flex align-items-center">
+					<div class="list-icon">
+						<i class="fas fa-shipping-fast"></i>
+					</div>
+					<div class="content">
+						<h3>Free Shipping</h3>
+						<p>When order over $75</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+				<div class="list-box d-flex align-items-center">
+					<div class="list-icon">
+						<i class="fas fa-phone-volume"></i>
+					</div>
+					<div class="content">
+						<h3>24/7 Support</h3>
+						<p>Get support all day</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="list-box d-flex justify-content-start align-items-center">
+					<div class="list-icon">
+						<i class="fas fa-sync"></i>
+					</div>
+					<div class="content">
+						<h3>Refund</h3>
+						<p>Get refund within 3 days!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
 <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="width: 90%;" id="loginModalContent">
@@ -70,10 +113,10 @@
                     <span aria-hidden="true">&times;</span>
                 </h3>
             </div>
-            <div class="modal-body" style="margin: 12px;">
+            <div class="modal-body" style="margin: 10px;">
 				<form id="loginForm" method="POST">
 					{% csrf_token %}
-					<div class="input-group input-group-lg">
+					<div class="input-group input-group-lg mb-4">
 						<div class="input-group-prepend">
 							<span class="input-group-text">
 								<span class="flag-icon flag-icon-in" style="margin-right: 8px;"></span> +91
@@ -81,7 +124,6 @@
 						</div>
 						<input type="text" class="form-control" aria-label="Large" placeholder="Phone number" aria-describedby="inputGroup-sizing-sm">
 					</div>
-					<div class="mb-4"></div>
 					<div class="input-group input-group-lg">
 						<button class="btn btn-dark btn-lg w-100 mb-4">Send OTP</button>
 					</div>
@@ -103,16 +145,17 @@
 					<div class="alert alert-danger" role="alert" id="authError" style="display: none;">
 						
 					  </div>
-					<div class="input-group input-group-lg">
+					<div class="input-group input-group-lg mb-4">
 						<input type="text" class="form-control" aria-label="Large" placeholder="Email" id="lgemail" name="lgemail" aria-describedby="inputGroup-sizing-sm">
 					</div>
 					<p id="lgemailError" class="text-danger" style="display: none;">Invalid email address</p>
-					<div class="mb-4"></div>
-					<div class="input-group input-group-lg">
-						<input type="text" class="form-control" aria-label="Large" id="lgpassword" name="lgpassword" placeholder="Password" aria-describedby="inputGroup-sizing-sm">
+					<div class="input-group input-group-lg mb-4">
+						<input type="password" class="form-control" aria-label="Large" id="lgpassword" name="lgpassword" placeholder="Password" aria-describedby="inputGroup-sizing-sm">
 					</div>
 					<p id="lgpasswordError" class="text-danger" style="display: none;">Password cannot be blank</p>
-					<div class="mb-4"></div>
+					<div style="text-align: right;" class="mb-4">
+						<input type="checkbox" onclick="togglePasswords('EmailForm')"> Show Password
+					  </div>
 					<div class="input-group input-group-lg">
 						<button class="btn btn-dark btn-lg w-100 mb-4" type="button" onclick="userLogin()">Login to your account</button>
 					</div>
@@ -141,25 +184,28 @@
 						<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" aria-label="Large" placeholder="Confirm Password" aria-describedby="inputGroup-sizing-sm">
 					</div>
 					<p id="passwordError" class="text-danger" style="display: none;"></p>
+					<div style="text-align: right;" class="mb-4">
+						<input type="checkbox" onclick="togglePasswords('signUpForm')"> Show Password
+					  </div>
+					  
 					<div class="form-check mb-4">
 						<input type="checkbox" class="form-check-input" id="agreeTerms" name="agreeTerms">
 						<label class="form-check-label" for="agreeTerms">
 							I agree to Zomato's <a href="#" target="_blank">Terms of Service</a>, <a href="#" target="_blank">Privacy Policy</a>, and <a href="#" target="_blank">Content Policies</a>.
 						</label>
 					</div>
+					
 					<div class="input-group input-group-lg mb-4">
 						<button id="createAccountButton" type="button" class="btn btn-dark btn-lg w-100" disabled onclick="createUser()">Create account</button>
 					</div>
-					<p class="text-center mb-4">or</p>
+					<p class="text-center" style="font-size: 20px;">or</p>
 					<div class="input-group input-group-lg mb-4">
 						<button class="btn btn-outline-dark btn-lg w-100">
 							<img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" style="width: 20px; height: 20px;" /> Sign in with Google
 						</button>
 					</div>
 				</form>
-            </div>
-            <div class="modal-footer">
-                <p class="text-left fs-6 w-100" style="margin-left: 15px;" id="toggleLink">
+				<p class="text-left fs-6 w-100" id="toggleLink">
                     New to <strong>Sweet Delight</strong>? 
                     <a href="#" class="text-primary text-decoration-none" onclick="toggleForms('signUpForm')">Create account</a>
                 </p>
@@ -168,7 +214,7 @@
     </div>
 </div>
 	
-<script src="{% static 'js/dashboard/dashboard.js' %}"></script>
+<script src="{% static 'js/index/index.js' %}"></script>
 <script>
     var createUserUrl = "{% url 'create_user' %}";
     var loginUserUrl = "{% url 'login_user' %}";

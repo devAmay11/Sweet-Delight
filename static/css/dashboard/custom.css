@@ -1,0 +1,37 @@
+.search-box {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+  }
+
+  .search-box input {
+    border: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+
+  .search-box input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .search-box button {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+
+  .search-box button:hover {
+    background-color: #0056b3;
+  }
+
+  #hero-area{
+    height: 80%;
+  }
+
+
+  .toggle-icon {
+    right: 10px;
+    top: 50%;
+    cursor: pointer;
+  }

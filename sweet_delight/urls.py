@@ -7,7 +7,7 @@ from dashboard import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.dashboard, name='dashboard'),
+    path('', views.index, name='index'),
     path('login_app/', include('login_app.urls')),
     path('dashboard/', include('dashboard.urls')),
     
