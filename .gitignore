@@ -1,5 +1,2 @@
 # Python bytecode files
 *.pyc
-
-# Django settings secrets and credentials
-*.env
