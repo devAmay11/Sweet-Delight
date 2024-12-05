@@ -59,5 +59,5 @@ def login_user(request):
 
 # Function to log out a user
 def logout_user(request):
-    logout(request)  # Log out the current user
+    logout(request)  # Log out the current  user
     return redirect('index')
